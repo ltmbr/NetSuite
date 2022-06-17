@@ -1,0 +1,6 @@
+severity = 3
+exclude  = RequireEndWithOne RequireExplicitPackage ControlStructures::ProhibitUnreachableCode Subroutines::ProhibitUnusedPrivateSubroutines
+include  = TestingAndDebugging::ProhibitNoWarnings 
+color    = 1
+pager    = less
+theme    = (pbp || security) && bugs 
