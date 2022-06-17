@@ -2,13 +2,12 @@ package NetSuite::Signature;
 
 use Moo;
 use URI::Escape;
+use MIME::Base64;
+use Digest::SHA qw/hmac_sha256/;
 use NetSuite qw/hash_to_query_string/;
 
 with qw/
-    NetSuite::Attribute::Realm
-    NetSuite::Attribute::ConsumerKey
     NetSuite::Attribute::ConsumerSecret
-    NetSuite::Attribute::TokenKey
     NetSuite::Attribute::TokenSecret
     NetSuite::Attribute::URL
 /;
@@ -18,26 +17,19 @@ has method => (
     is => 'ro'
 );
 
-# attribute nonce
-has nonce => (
-    is => 'ro'
-);
-
 # attribute parameters
 has parameters => (
     is      => 'ro',
     default => sub { {} }
 );
 
-# attribute timestamp
-has timestamp => (
-    is => 'ro'
-);
-
 sub signature {
     my $self = shift;
     
-    return;
+    my $data = $self->_data;
+    my $key  = $self->_key;
+    
+    return uri_escape(encode_base64(hmac_sha256($data, $key), ''));
 }
 
 sub _data {
