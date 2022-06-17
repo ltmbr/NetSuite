@@ -2,7 +2,8 @@ name: testing
 
 on: 
   push:
-    - master
+    branches:
+      - master
 
 jobs:
   build:
