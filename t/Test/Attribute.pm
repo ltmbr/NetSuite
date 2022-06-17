@@ -8,6 +8,7 @@ with qw/
     NetSuite::Attribute::TokenKey
     NetSuite::Attribute::TokenSecret
     NetSuite::Attribute::URL
+    NetSuite::Attribute::Method
 /;
 
 1;
