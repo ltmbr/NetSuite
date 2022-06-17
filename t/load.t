@@ -4,6 +4,7 @@ use Test::More;
 
 use_ok('NetSuite');
 use_ok('NetSuite::Util');
+use_ok('NetSuite::Header');
 use_ok('NetSuite::Signature');
 
 done_testing;
