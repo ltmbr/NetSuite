@@ -4,18 +4,14 @@ use Moo;
 use URI::Escape;
 use MIME::Base64;
 use Digest::SHA qw/hmac_sha256/;
-use NetSuite qw/hash_to_query_string/;
+use NetSuite::Util qw/hash_to_query_string/;
 
 with qw/
     NetSuite::Attribute::ConsumerSecret
     NetSuite::Attribute::TokenSecret
     NetSuite::Attribute::URL
+    NetSuite::Attribute::Method
 /;
-
-# attribute method
-has method => (
-    is => 'ro'
-);
 
 # attribute parameters
 has parameters => (
@@ -35,7 +31,7 @@ sub signature {
 sub _data {
     my $self = shift;
 
-    my $query_string = hash_to_query_string($self->parameters);
+    my $query_string = hash_to_query_string($self->parameters);    
     
     my $data = $self->method;
     $data   .= '&' . uri_escape($self->url);
