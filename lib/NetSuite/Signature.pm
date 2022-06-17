@@ -2,6 +2,7 @@ package NetSuite::Signature;
 
 use Moo;
 use URI::Escape;
+use NetSuite qw/hash_to_query_string/;
 
 with qw/
     NetSuite::Attribute::Realm
@@ -22,15 +23,10 @@ has nonce => (
     is => 'ro'
 );
 
-# attribute path info
-has path_info => (
-    is => 'ro'
-);
-
 # attribute parameters
 has parameters => (
     is      => 'ro',
-    default => { [] }
+    default => sub { {} }
 );
 
 # attribute timestamp
@@ -38,12 +34,20 @@ has timestamp => (
     is => 'ro'
 );
 
-sub _data {
+sub signature {
     my $self = shift;
     
+    return;
+}
+
+sub _data {
+    my $self = shift;
+
+    my $query_string = hash_to_query_string($self->parameters);
+    
     my $data = $self->method;
-    $data   .= '&' . uri_escape($self->url . $self->path);
-    $data   .= '&' . uri_escape($string);
+    $data   .= '&' . uri_escape($self->url);
+    $data   .= '&' . uri_escape($query_string);
     
     return $data;
 }
