@@ -11,7 +11,10 @@ my $test_attribute = Test::Attribute->new(
     token_key       => '2ce90be9c49b2eee4e3e6eaa9eb25598c71c41cec14e2e34a3ea8fc021079a8c',
     token_secret    => '49ba8fc02a591e4e3e6ec14e2e34ea90e9c8c079a8c22ea9eb3ece25e71c41cb',
     url             => 'https://1234567-sb8.suitetalk.api.netsuite.com',
-    method          => 'GET'
+    method          => 'GET',
+    parameters      => {
+        expandSubResources => 'false'
+    }
 );
 
 ok($test_attribute->valid_realm, 'Test method valid_realm');
@@ -34,5 +37,8 @@ is($test_attribute->url, 'https://1234567-sb8.suitetalk.api.netsuite.com', 'Test
 
 ok($test_attribute->valid_method, 'Test method valid_method');
 is($test_attribute->method, 'GET', 'Test if attribute method is equal');
+
+ok($test_attribute->valid_parameters, 'Test method valid_parameters');
+is($test_attribute->parameters->{expandSubResources}, 'false', 'Test if hash expandSubResources is equal');
 
 done_testing;
