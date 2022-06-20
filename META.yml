@@ -1,0 +1,32 @@
+---
+abstract: 'A perl interface to the NetSuite SuiteTalk REST Web Services API'
+author:
+  - 'Lucas Tiago de Moraes <lucastiagodemoraes@gmail.com>'
+build_requires:
+  ExtUtils::MakeMaker: '0'
+configure_requires:
+  ExtUtils::MakeMaker: '0'
+dynamic_config: 0
+generated_by: 'ExtUtils::MakeMaker version 7.62, CPAN::Meta::Converter version 2.150010'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: NetSuite
+no_index:
+  directory:
+    - t
+    - inc
+requires:
+  Digest::SHA: '0'
+  Exporter: '0'
+  MIME::Base64: '0'
+  Moo: '0'
+  URI: '0'
+  perl: '5.008001'
+resources:
+  bugtracker: https://github.com/ltmbr/NetSuite/issues
+  homepage: https://github.com/ltmbr/NetSuite
+  repository: https://github.com/ltmbr/NetSuite
+version: '0.01'
+x_serialization_backend: 'CPAN::Meta::YAML version 0.018'
