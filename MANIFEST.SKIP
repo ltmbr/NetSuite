@@ -1,0 +1,7 @@
+.git
+.github
+.perlcriticrc
+^MANIFEST\.
+^Makefile$
+^blib/
+^MakeMaker-\d

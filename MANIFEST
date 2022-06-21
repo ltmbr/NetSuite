@@ -1,0 +1,27 @@
+cpanfile
+lib/NetSuite.pm
+lib/NetSuite/Attribute/ConsumerKey.pm
+lib/NetSuite/Attribute/ConsumerSecret.pm
+lib/NetSuite/Attribute/Method.pm
+lib/NetSuite/Attribute/Parameters.pm
+lib/NetSuite/Attribute/Realm.pm
+lib/NetSuite/Attribute/TokenKey.pm
+lib/NetSuite/Attribute/TokenSecret.pm
+lib/NetSuite/Attribute/URL.pm
+lib/NetSuite/Config.pm
+lib/NetSuite/Header.pm
+lib/NetSuite/Request.pm
+lib/NetSuite/Signature.pm
+lib/NetSuite/Util.pm
+Makefile.PL
+MANIFEST			This list of files
+META.json
+META.yml
+t/load.t
+t/netsuite.t
+t/netsuite_attribute.t
+t/netsuite_header.t
+t/netsuite_request.t
+t/netsuite_signature.t
+t/netsuite_util.t
+t/Test/Attribute.pm
