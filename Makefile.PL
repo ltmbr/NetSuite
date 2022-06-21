@@ -33,7 +33,8 @@ WriteMakefile(
         'URI'          => 0,
         'Exporter'     => 0,
         'MIME::Base64' => 0,
-        'Digest::SHA'  => 0
+        'Digest::SHA'  => 0,
+        'Furl'         => 0
     },
 
     test => {

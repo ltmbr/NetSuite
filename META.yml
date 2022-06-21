@@ -20,6 +20,7 @@ no_index:
 requires:
   Digest::SHA: '0'
   Exporter: '0'
+  Furl: '0'
   MIME::Base64: '0'
   Moo: '0'
   URI: '0'
