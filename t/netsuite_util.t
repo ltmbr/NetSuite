@@ -2,6 +2,8 @@ use strict;
 use warnings;
 use Test::More;
 use NetSuite::Util qw/
+    camelize
+    file_exists
     hash_to_query_string
     query_string_to_hash
     nonce
@@ -24,5 +26,13 @@ is($query_string, 'age=34&name=Lucas', 'Test query string');
 is(timestamp, time, 'Test return timestamp');
 
 is(valid_token('4efc02ac34078c22ee7118c1e4e3e6ee2ec41a349ba8a9eb25590be9ccece99a'), 1, 'Test to valid if token have 64 characters');
+
+is(camelize('assembly-item'), 'AssemblyItem', 'Test camelize 1');
+is(camelize('assembly_item'), 'AssemblyItem', 'Test camelize 2');
+is(camelize('assembly item'), 'AssemblyItem', 'Test camelize 3');
+is(camelize('AssemblyItem'),  'AssemblyItem', 'Test camelize 4');
+
+ok(file_exists('AssemblyItem.pm'), 'Test file that exists!');
+ok(!file_exists('Foo.pm'),         'Test file that not exists!');
 
 done_testing;
