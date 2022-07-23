@@ -5,18 +5,28 @@ use Furl;
 use NetSuite::Util qw/
     camelize 
     file_exists
+    load_class
 /;
 
 with qw/
-    NetSuite::Attribute::Agent
-    NetSuite::Attribute::Realm
     NetSuite::Attribute::ConsumerKey
     NetSuite::Attribute::ConsumerSecret
+    NetSuite::Attribute::Realm
     NetSuite::Attribute::TokenKey
     NetSuite::Attribute::TokenSecret
 /;
 
-our $VERSION = '0.01';
+# attribute agent
+has agent => (
+    is      => 'ro',
+    default => 'Perl-NetSuite'
+);
+
+# attribute limit
+has limit => (
+    is      => 'ro',
+    default => 20
+);
 
 # attribute furl
 has 'furl' => (
@@ -26,7 +36,7 @@ has 'furl' => (
     default  => sub {
         Furl->new(
             agent   => $_[0]->{agent},
-            timeout => 20
+            timeout => $_[0]->{limit}
         );
     }
 );
@@ -37,6 +47,8 @@ has 'url' => (
     writer   => 'set_url',
     init_arg => undef
 );
+
+our $VERSION = '0.01';
 
 sub BUILD {
     my $self = shift;
@@ -58,10 +70,9 @@ sub transaction {
         if (file_exists($file)) {
             my $class = "NetSuite::Transaction::$transaction";
             
-            if (load_class $class) {
+            if (load_class($class)) {
                 return $class->new(
-                    url  => $self->url,
-                    furl => $self->furl
+                    base => $self
                 );
             }
         }
