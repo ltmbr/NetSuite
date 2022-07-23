@@ -2,9 +2,10 @@ package NetSuite;
 
 use Moo;
 use Furl;
-use NetSuite::Util qw/camelize/;
-
-our $VERSION = '0.01';
+use NetSuite::Util qw/
+    camelize 
+    file_exists
+/;
 
 with qw/
     NetSuite::Attribute::Agent
@@ -14,6 +15,8 @@ with qw/
     NetSuite::Attribute::TokenKey
     NetSuite::Attribute::TokenSecret
 /;
+
+our $VERSION = '0.01';
 
 # attribute furl
 has 'furl' => (
