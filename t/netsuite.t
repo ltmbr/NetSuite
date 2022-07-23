@@ -11,4 +11,6 @@ is($headers{'User-Agent'}, 'Perl-NetSuite', 'Test user agent default');
 
 is(${$netsuite->furl}->{timeout}, 20, 'Test timeout default');
 
+$netsuite->transaction('AssemblyItem')->list;
+
 done_testing;

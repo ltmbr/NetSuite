@@ -4,6 +4,7 @@ use Test::More;
 use NetSuite::Util qw/
     camelize
     file_exists
+    load_class
     hash_to_query_string
     query_string_to_hash
     nonce
@@ -34,5 +35,8 @@ is(camelize('AssemblyItem'),  'AssemblyItem', 'Test camelize 4');
 
 ok(file_exists('AssemblyItem.pm'), 'Test file that exists!');
 ok(!file_exists('Foo.pm'),         'Test file that not exists!');
+
+ok(load_class('NetSuite::Transaction::AssemblyItem'), 'Test if can load class!');
+ok(!load_class('NetSuite::Transaction::Foo'),         'Test if can\'t load class!');
 
 done_testing;

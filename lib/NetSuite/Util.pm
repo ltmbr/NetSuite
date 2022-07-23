@@ -53,7 +53,7 @@ sub hash_to_query_string {
 sub load_class {
     my $class = shift;
     
-    return if $class->can('new') || eval {require $class; 1};
+    return $class->can('new') || eval "require $class; 1";
     
     return;
 }
