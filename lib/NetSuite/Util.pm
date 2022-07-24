@@ -54,8 +54,6 @@ sub load_class {
     my $class = shift;
     
     return $class->can('new') || eval "require $class; 1";
-    
-    return;
 }
 
 sub query_string_to_hash {

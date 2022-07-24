@@ -2,6 +2,7 @@ package NetSuite::Request::List;
 
 use Moo::Role;
 use NetSuite::Header;
+use Data::Dump qw/dump/;
 
 # attribute q
 has q => (
@@ -22,7 +23,7 @@ has offset => (
 );
 
 sub list {
-    my ($self) = @_;
+    my ($self, $path) = @_;
     
     my $header = NetSuite::Header->new(
         parameters => {
@@ -30,6 +31,12 @@ sub list {
             limit  => $self->limit,
             offset => $self->offset
         }
+    );
+    
+    my $query_string;
+        
+    my $response = $self->base->furl->get(
+        $self->base->url . $self->path
     );
 }
 
