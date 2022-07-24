@@ -2,7 +2,6 @@ package NetSuite::Request::List;
 
 use Moo::Role;
 use NetSuite::Header;
-use Data::Dump qw/dump/;
 
 # attribute q
 has q => (
