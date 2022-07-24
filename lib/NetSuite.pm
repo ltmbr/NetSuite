@@ -1,6 +1,7 @@
 package NetSuite;
 
 use Moo;
+use Carp;
 use Furl;
 use NetSuite::Util qw/
     camelize 
@@ -53,11 +54,12 @@ our $VERSION = '0.01';
 sub BUILD {
     my $self = shift;
     
-    if ($self->valid_realm) {            
-        my $url = 'https://' . $self->realm . '.suitetalk.api.netsuite.com';
-        
-        $self->set_url($url);
-    }
+    # valid attributes
+    $self->_valid_attributes;
+              
+    # set url
+    my $url = 'https://' . $self->realm . '.suitetalk.api.netsuite.com';
+    $self->set_url($url);
 }
 
 sub transaction {
@@ -72,13 +74,28 @@ sub transaction {
             
             if (load_class($class)) {
                 return $class->new(
-                    base => $self
+                    base => $self,
+                    path => $transaction
                 );
             }
+            
+            croak 'Transaction class cannot be loaded!';
         }
+        
+        croak 'Transaction file does not exist!';
     }
     
-    return;
+    croak 'Transaction name has not been set!';
+}
+
+sub _valid_attributes {
+    my $self = shift;
+    
+    croak 'consumer_key attribute has not been set!'    unless $self->valid_consumer_key;
+    croak 'consumer_secret attribute has not been set!' unless $self->valid_consumer_secret;
+    croak 'realm attribute has not been set!'           unless $self->valid_realm;
+    croak 'token_key attribute has not been set!'       unless $self->valid_token_key;
+    croak 'token_secret attribute has not been set!'    unless $self->valid_token_secret;
 }
 
 1;

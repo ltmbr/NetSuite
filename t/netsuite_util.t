@@ -34,7 +34,7 @@ is(camelize('assembly item'), 'AssemblyItem', 'Test camelize 3');
 is(camelize('AssemblyItem'),  'AssemblyItem', 'Test camelize 4');
 
 ok(file_exists('AssemblyItem.pm'), 'Test file that exists!');
-ok(!file_exists('Foo.pm'),         'Test file that not exists!');
+ok(!eval{file_exists('Foo.pm')},         'Test file that not exists!');
 
 ok(load_class('NetSuite::Transaction::AssemblyItem'), 'Test if can load class!');
 ok(!load_class('NetSuite::Transaction::Foo'),         'Test if can\'t load class!');
