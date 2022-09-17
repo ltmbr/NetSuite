@@ -74,8 +74,8 @@ sub transaction {
             
             if (load_class($class)) {
                 return $class->new(
-                    base => $self,
-                    path => $transaction
+                    base      => $self,
+                    path_info => lc($transaction)
                 );
             }
             

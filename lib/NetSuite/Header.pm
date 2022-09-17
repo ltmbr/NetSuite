@@ -6,14 +6,14 @@ use NetSuite::Util qw/nonce timestamp/;
 
 with qw/
     NetSuite::Config
-    NetSuite::Attribute::Realm
     NetSuite::Attribute::ConsumerKey
     NetSuite::Attribute::ConsumerSecret
+    NetSuite::Attribute::Method
+    NetSuite::Attribute::Parameters
+    NetSuite::Attribute::Realm
     NetSuite::Attribute::TokenKey
     NetSuite::Attribute::TokenSecret
     NetSuite::Attribute::URL
-    NetSuite::Attribute::Method
-    NetSuite::Attribute::Parameters
 /;
 
 sub header {

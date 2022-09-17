@@ -11,13 +11,8 @@ with qw/
     NetSuite::Attribute::TokenSecret
     NetSuite::Attribute::URL
     NetSuite::Attribute::Method
+    NetSuite::Attribute::Parameters
 /;
-
-# attribute parameters
-has parameters => (
-    is      => 'ro',
-    default => sub { {} }
-);
 
 sub signature {
     my $self = shift;

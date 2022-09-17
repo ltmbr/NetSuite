@@ -3,12 +3,6 @@ package NetSuite::Request::List;
 use Moo::Role;
 use NetSuite::Header;
 
-# attribute q
-has q => (
-    is      => 'ro',
-    default => ''
-);
-
 # attribute limit
 has limit => (
     is      => 'ro',
@@ -22,10 +16,19 @@ has offset => (
 );
 
 sub list {
-    my ($self, $path) = @_;
+    my $self = shift;
+    
+    my $url = $self->base->url . $self->path_info;
     
     my $header = NetSuite::Header->new(
-        parameters => {
+        realm           => $self->base->realm,
+        consumer_key    => $self->base->consumer_key,
+        consumer_secret => $self->base->consumer_secret,
+        token_key       => $self->base->token_key,
+        token_secret    => $self->base->token_secret,
+        method          => 'GET',
+        url             => $url,
+        parameters      => {
             q      => $self->q,
             limit  => $self->limit,
             offset => $self->offset
@@ -35,7 +38,7 @@ sub list {
     my $query_string;
         
     my $response = $self->base->furl->get(
-        $self->base->url . $self->path
+        $url
     );
 }
 
