@@ -15,7 +15,7 @@ my $test_attribute = Test::Attribute->new(
     parameters      => {
         expandSubResources => 'false'
     },
-    path            => 'AssemblyItem'
+    path_info       => 'AssemblyItem'
 );
 
 ok($test_attribute->valid_realm, 'Test method valid_realm');
@@ -42,7 +42,7 @@ is($test_attribute->method, 'GET', 'Test if attribute method is equal');
 ok($test_attribute->valid_parameters, 'Test method valid_parameters');
 is($test_attribute->parameters->{expandSubResources}, 'false', 'Test if hash expandSubResources is equal');
 
-ok($test_attribute->valid_path, 'Test method valid_path');
-is($test_attribute->path, '/services/rest/record/v1/AssemblyItem', 'Test if attribute path is equal');
+ok($test_attribute->valid_path_info, 'Test method valid_path_info');
+is($test_attribute->path_info, '/services/rest/record/v1/AssemblyItem', 'Test if attribute path_info is equal');
 
 done_testing;

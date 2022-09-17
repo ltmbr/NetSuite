@@ -1,4 +1,4 @@
-package NetSuite::Attribute::path_infoInfo;
+package NetSuite::Attribute::PathInfo;
 
 use Moo::Role;
 

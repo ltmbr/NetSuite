@@ -10,7 +10,7 @@ with qw/
     NetSuite::Attribute::URL
     NetSuite::Attribute::Method
     NetSuite::Attribute::Parameters
-    NetSuite::Attribute::Path
+    NetSuite::Attribute::PathInfo
 /;
 
 1;
